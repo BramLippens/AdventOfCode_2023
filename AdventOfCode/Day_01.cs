@@ -11,7 +11,7 @@ public class Day_01 : BaseDay
 
     public override ValueTask<string> Solve_1()
     {
-        /*var lines = _input.Split("\n");
+        var lines = _input.Split("\n");
         var sum = 0;
 
         foreach (var line in lines)
@@ -23,9 +23,9 @@ public class Day_01 : BaseDay
             // merge the two digits
             var digit = int.Parse($"{left}{right}");
             sum += digit;
-        }*/
+        }
 
-        return new($"");
+        return new($"{sum}");
     }
 
     public override ValueTask<string> Solve_2()
@@ -71,8 +71,7 @@ public class Day_01 : BaseDay
                     secondDigit = new(target, lastIndex);
                 }
             }
-            var firstNumber = OneToNine[firstDigit.Key];
-            var secondNumber = OneToNine[secondDigit.Key];
+
             var digit = int.Parse($"{OneToNine[firstDigit.Key]}{OneToNine[secondDigit.Key]}");
             sum+= digit;
         }

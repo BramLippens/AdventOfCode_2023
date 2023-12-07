@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode;
+namespace AdventOfCode;
 
 public class Day_04 : BaseDay
 {
@@ -14,7 +14,32 @@ public class Day_04 : BaseDay
         var lines = _input.Split("\n")
                           .Select(line => line.Trim())
                           .ToArray();
-        return new($"");
+        var total = 0;
+
+        foreach (var line in lines)
+        {
+            var split = line.Split(" | ");
+            var winningnumbers = split[0].Split(": ")[1].Split(" ").Where(s => !string.IsNullOrEmpty(s)) // Filter out empty strings
+                                   .Select(int.Parse)
+                                   .ToList();
+            var guessednumbers = split[1].Split(" ")
+                                   .Where(s => !string.IsNullOrEmpty(s)) // Filter out empty strings
+                                   .Select(int.Parse)
+                                   .ToList();
+
+            List<int> commonNumbers = winningnumbers.Intersect(guessednumbers).ToList();
+            if (commonNumbers.Count > 0)
+            {
+                var product = 1;
+                for (int i = 1; i < commonNumbers.Count; i++)
+                {
+                    product *= 2;
+                }
+                total += product;
+            }
+        }
+
+        return new($"{total}");
     }
 
     public override ValueTask<string> Solve_2()
